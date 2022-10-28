@@ -1,8 +1,6 @@
 Huge thanks to [Shivam Shrirao](https://github.com/ShivamShrirao) for providing us his implementation of DreamBooth. 
 
-To get started, hit this [link](https://console.brev.dev/environment/new?setupRepo=https://github.com/brevdev/dreambooth&repo=https://github.com/brevdev/dreambooth&setupPath=.brev/setup.sh&instance=g5.2xlarge)
-
-Create a Brev environment. We've pre-configured the defaults you'll need to run DreamBooth.
+To get started, hit this [link](https://console.brev.dev/environment/new?setupRepo=https://github.com/brevdev/dreambooth&repo=https://github.com/brevdev/dreambooth&setupPath=.brev/setup.sh&instance=g5.2xlarge)to create a Brev environment. We've pre-configured the defaults you'll need to run DreamBooth.
 
 Install Brev:
 ```
@@ -22,10 +20,11 @@ To run do:
 ```
 sh launch.sh
 ```
-It'll prompt you to add your huggingface token and then the model should download and fine-tune on your input images 🎉🎉. (It should take around 7 minutes to train!)
+It'll prompt you to add your huggingface token and then the model should download and fine-tune on your input images 🎉🎉. (It should take around 7 minutes to train and generate samples!)
 
 
-
+To explore more options have a look at [Shivam's example](https://github.com/ShivamShrirao/diffusers/tree/main/examples/dreambooth)
+<!-- 
 To reduce VRAM usage to 9.92 GB, pass `--gradient_checkpointing` and `--use_8bit_adam` flag to use 8 bit adam optimizer from [bitsandbytes](https://github.com/TimDettmers/bitsandbytes).
 
 Model with just [xformers](https://github.com/facebookresearch/xformers) memory efficient flash attention uses 15.79 GB VRAM with `--gradient_checkpointing` else 17.7 GB. Both have no loss in precision at all. gradient_checkpointing recalculates intermediate activations to save memory at cost of some speed.
@@ -259,4 +258,4 @@ prompt = "A photo of sks dog in a bucket"
 image = pipe(prompt, num_inference_steps=50, guidance_scale=7.5).images[0]
 
 image.save("dog-bucket.png")
-```
+``` -->
