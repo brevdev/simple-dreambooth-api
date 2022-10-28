@@ -6,3 +6,5 @@ conda create --name diffusers python=3.9 -y
 conda activate diffusers
 pip install git+https://github.com/ShivamShrirao/diffusers.git
 pip install -U -r requirements.txt
+pip install pyheif
+pip install piexif

@@ -5,7 +5,7 @@ eval "$(conda shell.bash hook)"
 
 conda activate diffusers
 huggingface-cli login
-
+python heictojpg.py "./data/dog"    
 accelerate launch train_dreambooth.py \
   --pretrained_model_name_or_path=$MODEL_NAME  \
   --instance_data_dir=$INSTANCE_DIR \
