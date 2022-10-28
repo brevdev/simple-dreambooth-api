@@ -4,7 +4,7 @@ export OUTPUT_DIR="fine-tuned-model-output"
 eval "$(conda shell.bash hook)"
 
 conda activate diffusers
-# huggingface-cli login
+huggingface-cli login
 
 accelerate launch train_dreambooth.py \
   --pretrained_model_name_or_path=$MODEL_NAME  \
