@@ -1,3 +1,9 @@
+HUGE THANKS TO [SHIVAM SHRIRAO](https://github.com/ShivamShrirao) FOR IMPLEMENTING DREAMBOOTH WITH STABLE DIFFUSION. WE'VE JUST MADE IT EASY TO RUN ON OUR HARDWARE.
+
+To get started, hit this [link](https://console.brev.dev/environment/new?setupRepo=https://github.com/brevdev/dreambooth-fork&repo=https://github.com/brevdev/dreambooth-fork&setupPath=.brev/setup.sh&instance=g5.2xlarge)
+
+
+
 To reduce VRAM usage to 9.92 GB, pass `--gradient_checkpointing` and `--use_8bit_adam` flag to use 8 bit adam optimizer from [bitsandbytes](https://github.com/TimDettmers/bitsandbytes).
 
 Model with just [xformers](https://github.com/facebookresearch/xformers) memory efficient flash attention uses 15.79 GB VRAM with `--gradient_checkpointing` else 17.7 GB. Both have no loss in precision at all. gradient_checkpointing recalculates intermediate activations to save memory at cost of some speed.

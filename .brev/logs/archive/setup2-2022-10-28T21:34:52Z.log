@@ -1,0 +1,226 @@
+user: ubuntu
+pwd: /home/ubuntu/dreambooth-fork
+no change     /opt/conda/condabin/conda
+no change     /opt/conda/bin/conda
+no change     /opt/conda/bin/conda-env
+no change     /opt/conda/bin/activate
+no change     /opt/conda/bin/deactivate
+no change     /opt/conda/etc/profile.d/conda.sh
+no change     /opt/conda/etc/fish/conf.d/conda.fish
+no change     /opt/conda/shell/condabin/Conda.psm1
+no change     /opt/conda/shell/condabin/conda-hook.ps1
+no change     /opt/conda/lib/python3.9/site-packages/xontrib/conda.xsh
+no change     /opt/conda/etc/profile.d/conda.csh
+no change     /home/ubuntu/.zshrc
+No action taken.
+no change     /opt/conda/condabin/conda
+no change     /opt/conda/bin/conda
+no change     /opt/conda/bin/conda-env
+no change     /opt/conda/bin/activate
+no change     /opt/conda/bin/deactivate
+no change     /opt/conda/etc/profile.d/conda.sh
+no change     /opt/conda/etc/fish/conf.d/conda.fish
+no change     /opt/conda/shell/condabin/Conda.psm1
+no change     /opt/conda/shell/condabin/conda-hook.ps1
+no change     /opt/conda/lib/python3.9/site-packages/xontrib/conda.xsh
+no change     /opt/conda/etc/profile.d/conda.csh
+no change     /home/ubuntu/.bashrc
+No action taken.
+Collecting package metadata (current_repodata.json): ...working... done
+Solving environment: ...working... done
+
+
+==> WARNING: A newer version of conda exists. <==
+  current version: 4.10.1
+  latest version: 22.9.0
+
+Please update conda by running
+
+    $ conda update -n base conda
+
+
+
+## Package Plan ##
+
+  environment location: /opt/conda/envs/diffusers2
+
+  added / updated specs:
+    - python=3.9
+
+
+The following NEW packages will be INSTALLED:
+
+  _libgcc_mutex      conda-forge/linux-64::_libgcc_mutex-0.1-conda_forge
+  _openmp_mutex      conda-forge/linux-64::_openmp_mutex-4.5-2_gnu
+  bzip2              conda-forge/linux-64::bzip2-1.0.8-h7f98852_4
+  ca-certificates    conda-forge/linux-64::ca-certificates-2022.9.24-ha878542_0
+  ld_impl_linux-64   conda-forge/linux-64::ld_impl_linux-64-2.39-hc81fddc_0
+  libffi             conda-forge/linux-64::libffi-3.4.2-h7f98852_5
+  libgcc-ng          conda-forge/linux-64::libgcc-ng-12.2.0-h65d4601_19
+  libgomp            conda-forge/linux-64::libgomp-12.2.0-h65d4601_19
+  libnsl             conda-forge/linux-64::libnsl-2.0.0-h7f98852_0
+  libsqlite          conda-forge/linux-64::libsqlite-3.39.4-h753d276_0
+  libuuid            conda-forge/linux-64::libuuid-2.32.1-h7f98852_1000
+  libzlib            conda-forge/linux-64::libzlib-1.2.13-h166bdaf_4
+  ncurses            conda-forge/linux-64::ncurses-6.3-h27087fc_1
+  openssl            conda-forge/linux-64::openssl-3.0.5-h166bdaf_2
+  pip                conda-forge/noarch::pip-22.3-pyhd8ed1ab_0
+  python             conda-forge/linux-64::python-3.9.13-h2660328_0_cpython
+  readline           conda-forge/linux-64::readline-8.1.2-h0f457ee_0
+  setuptools         conda-forge/noarch::setuptools-65.5.0-pyhd8ed1ab_0
+  sqlite             conda-forge/linux-64::sqlite-3.39.4-h4ff8645_0
+  tk                 conda-forge/linux-64::tk-8.6.12-h27826a3_0
+  tzdata             conda-forge/noarch::tzdata-2022e-h191b570_0
+  wheel              conda-forge/noarch::wheel-0.37.1-pyhd8ed1ab_0
+  xz                 conda-forge/linux-64::xz-5.2.6-h166bdaf_0
+
+
+Preparing transaction: ...working... done
+Verifying transaction: ...working... done
+Executing transaction: ...working... done
+#
+# To activate this environment, use
+#
+#     $ conda activate diffusers2
+#
+# To deactivate an active environment, use
+#
+#     $ conda deactivate
+
+Collecting git+https://github.com/ShivamShrirao/diffusers.git
+  Cloning https://github.com/ShivamShrirao/diffusers.git to /tmp/pip-req-build-st3lztid
+  Running command git clone --filter=blob:none --quiet https://github.com/ShivamShrirao/diffusers.git /tmp/pip-req-build-st3lztid
+  Resolved https://github.com/ShivamShrirao/diffusers.git to commit fc0de43c8c0f2e9729f4a03ed6f4cf95f88bed46
+  Installing build dependencies: started
+  Installing build dependencies: finished with status 'done'
+  Getting requirements to build wheel: started
+  Getting requirements to build wheel: finished with status 'done'
+  Preparing metadata (pyproject.toml): started
+  Preparing metadata (pyproject.toml): finished with status 'done'
+Collecting regex!=2019.12.17
+  Using cached regex-2022.9.13-cp39-cp39-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (769 kB)
+Collecting importlib-metadata
+  Using cached importlib_metadata-5.0.0-py3-none-any.whl (21 kB)
+Collecting requests
+  Using cached requests-2.28.1-py3-none-any.whl (62 kB)
+Collecting Pillow<10.0
+  Using cached Pillow-9.2.0-cp39-cp39-manylinux_2_28_x86_64.whl (3.2 MB)
+Collecting numpy
+  Using cached numpy-1.23.4-cp39-cp39-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (17.1 MB)
+Collecting huggingface-hub>=0.10.0
+  Using cached huggingface_hub-0.10.1-py3-none-any.whl (163 kB)
+Collecting filelock
+  Using cached filelock-3.8.0-py3-none-any.whl (10 kB)
+Collecting pyyaml>=5.1
+  Using cached PyYAML-6.0-cp39-cp39-manylinux_2_5_x86_64.manylinux1_x86_64.manylinux_2_12_x86_64.manylinux2010_x86_64.whl (661 kB)
+Collecting packaging>=20.9
+  Using cached packaging-21.3-py3-none-any.whl (40 kB)
+Collecting typing-extensions>=3.7.4.3
+  Using cached typing_extensions-4.4.0-py3-none-any.whl (26 kB)
+Collecting tqdm
+  Using cached tqdm-4.64.1-py2.py3-none-any.whl (78 kB)
+Collecting zipp>=0.5
+  Using cached zipp-3.10.0-py3-none-any.whl (6.2 kB)
+Collecting urllib3<1.27,>=1.21.1
+  Using cached urllib3-1.26.12-py2.py3-none-any.whl (140 kB)
+Collecting idna<4,>=2.5
+  Using cached idna-3.4-py3-none-any.whl (61 kB)
+Collecting charset-normalizer<3,>=2
+  Using cached charset_normalizer-2.1.1-py3-none-any.whl (39 kB)
+Collecting certifi>=2017.4.17
+  Using cached certifi-2022.9.24-py3-none-any.whl (161 kB)
+Collecting pyparsing!=3.0.5,>=2.0.2
+  Using cached pyparsing-3.0.9-py3-none-any.whl (98 kB)
+Building wheels for collected packages: diffusers
+  Building wheel for diffusers (pyproject.toml): started
+  Building wheel for diffusers (pyproject.toml): finished with status 'done'
+  Created wheel for diffusers: filename=diffusers-0.7.0.dev0-py3-none-any.whl size=256260 sha256=41001336330048925d9e6acc624b18efac35f40f3a6c92ab073d5a02a27f625b
+  Stored in directory: /tmp/pip-ephem-wheel-cache-_ddbrng8/wheels/0c/16/61/6ec88dc8ecc9b3602c3c27bd2a64e44d671c5d6b59b07353e3
+Successfully built diffusers
+Installing collected packages: zipp, urllib3, typing-extensions, tqdm, regex, pyyaml, pyparsing, Pillow, numpy, idna, filelock, charset-normalizer, certifi, requests, packaging, importlib-metadata, huggingface-hub, diffusers
+Successfully installed Pillow-9.2.0 certifi-2022.9.24 charset-normalizer-2.1.1 diffusers-0.7.0.dev0 filelock-3.8.0 huggingface-hub-0.10.1 idna-3.4 importlib-metadata-5.0.0 numpy-1.23.4 packaging-21.3 pyparsing-3.0.9 pyyaml-6.0 regex-2022.9.13 requests-2.28.1 tqdm-4.64.1 typing-extensions-4.4.0 urllib3-1.26.12 zipp-3.10.0
+Collecting accelerate==0.12.0
+  Using cached accelerate-0.12.0-py3-none-any.whl (143 kB)
+Collecting torchvision
+  Using cached torchvision-0.14.0-cp39-cp39-manylinux1_x86_64.whl (24.3 MB)
+Collecting transformers>=4.21.0
+  Using cached transformers-4.23.1-py3-none-any.whl (5.3 MB)
+Collecting ftfy
+  Using cached ftfy-6.1.1-py3-none-any.whl (53 kB)
+Collecting tensorboard
+  Using cached tensorboard-2.10.1-py3-none-any.whl (5.9 MB)
+Collecting modelcards
+  Using cached modelcards-0.1.6-py3-none-any.whl (12 kB)
+Requirement already satisfied: packaging>=20.0 in /opt/conda/envs/diffusers2/lib/python3.9/site-packages (from accelerate==0.12.0->-r requirements.txt (line 1)) (21.3)
+Collecting torch>=1.4.0
+  Using cached torch-1.13.0-cp39-cp39-manylinux1_x86_64.whl (890.2 MB)
+Requirement already satisfied: pyyaml in /opt/conda/envs/diffusers2/lib/python3.9/site-packages (from accelerate==0.12.0->-r requirements.txt (line 1)) (6.0)
+Collecting psutil
+  Using cached psutil-5.9.3-cp39-cp39-manylinux_2_12_x86_64.manylinux2010_x86_64.manylinux_2_17_x86_64.manylinux2014_x86_64.whl (291 kB)
+Requirement already satisfied: numpy>=1.17 in /opt/conda/envs/diffusers2/lib/python3.9/site-packages (from accelerate==0.12.0->-r requirements.txt (line 1)) (1.23.4)
+Requirement already satisfied: typing-extensions in /opt/conda/envs/diffusers2/lib/python3.9/site-packages (from torchvision->-r requirements.txt (line 2)) (4.4.0)
+Requirement already satisfied: pillow!=8.3.*,>=5.3.0 in /opt/conda/envs/diffusers2/lib/python3.9/site-packages (from torchvision->-r requirements.txt (line 2)) (9.2.0)
+Requirement already satisfied: requests in /opt/conda/envs/diffusers2/lib/python3.9/site-packages (from torchvision->-r requirements.txt (line 2)) (2.28.1)
+Collecting nvidia-cuda-runtime-cu11==11.7.99
+  Using cached nvidia_cuda_runtime_cu11-11.7.99-py3-none-manylinux1_x86_64.whl (849 kB)
+Collecting nvidia-cudnn-cu11==8.5.0.96
+  Using cached nvidia_cudnn_cu11-8.5.0.96-2-py3-none-manylinux1_x86_64.whl (557.1 MB)
+Collecting nvidia-cuda-nvrtc-cu11==11.7.99
+  Using cached nvidia_cuda_nvrtc_cu11-11.7.99-2-py3-none-manylinux1_x86_64.whl (21.0 MB)
+Collecting nvidia-cublas-cu11==11.10.3.66
+  Using cached nvidia_cublas_cu11-11.10.3.66-py3-none-manylinux1_x86_64.whl (317.1 MB)
+Requirement already satisfied: wheel in /opt/conda/envs/diffusers2/lib/python3.9/site-packages (from nvidia-cublas-cu11==11.10.3.66->torch>=1.4.0->accelerate==0.12.0->-r requirements.txt (line 1)) (0.37.1)
+Requirement already satisfied: setuptools in /opt/conda/envs/diffusers2/lib/python3.9/site-packages (from nvidia-cublas-cu11==11.10.3.66->torch>=1.4.0->accelerate==0.12.0->-r requirements.txt (line 1)) (65.5.0)
+Requirement already satisfied: huggingface-hub<1.0,>=0.10.0 in /opt/conda/envs/diffusers2/lib/python3.9/site-packages (from transformers>=4.21.0->-r requirements.txt (line 3)) (0.10.1)
+Requirement already satisfied: filelock in /opt/conda/envs/diffusers2/lib/python3.9/site-packages (from transformers>=4.21.0->-r requirements.txt (line 3)) (3.8.0)
+Requirement already satisfied: tqdm>=4.27 in /opt/conda/envs/diffusers2/lib/python3.9/site-packages (from transformers>=4.21.0->-r requirements.txt (line 3)) (4.64.1)
+Requirement already satisfied: regex!=2019.12.17 in /opt/conda/envs/diffusers2/lib/python3.9/site-packages (from transformers>=4.21.0->-r requirements.txt (line 3)) (2022.9.13)
+Collecting tokenizers!=0.11.3,<0.14,>=0.11.1
+  Using cached tokenizers-0.13.1-cp39-cp39-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (7.6 MB)
+Collecting wcwidth>=0.2.5
+  Using cached wcwidth-0.2.5-py2.py3-none-any.whl (30 kB)
+Collecting protobuf<3.20,>=3.9.2
+  Using cached protobuf-3.19.6-cp39-cp39-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (1.1 MB)
+Collecting google-auth-oauthlib<0.5,>=0.4.1
+  Using cached google_auth_oauthlib-0.4.6-py2.py3-none-any.whl (18 kB)
+Collecting absl-py>=0.4
+  Using cached absl_py-1.3.0-py3-none-any.whl (124 kB)
+Collecting google-auth<3,>=1.6.3
+  Using cached google_auth-2.13.0-py2.py3-none-any.whl (174 kB)
+Collecting werkzeug>=1.0.1
+  Using cached Werkzeug-2.2.2-py3-none-any.whl (232 kB)
+Collecting markdown>=2.6.8
+  Using cached Markdown-3.4.1-py3-none-any.whl (93 kB)
+Collecting grpcio>=1.24.3
+  Using cached grpcio-1.50.0-cp39-cp39-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (4.7 MB)
+Collecting tensorboard-plugin-wit>=1.6.0
+  Using cached tensorboard_plugin_wit-1.8.1-py3-none-any.whl (781 kB)
+Collecting tensorboard-data-server<0.7.0,>=0.6.0
+  Using cached tensorboard_data_server-0.6.1-py3-none-manylinux2010_x86_64.whl (4.9 MB)
+Collecting Jinja2
+  Using cached Jinja2-3.1.2-py3-none-any.whl (133 kB)
+Collecting cachetools<6.0,>=2.0.0
+  Using cached cachetools-5.2.0-py3-none-any.whl (9.3 kB)
+Collecting rsa<5,>=3.1.4
+  Using cached rsa-4.9-py3-none-any.whl (34 kB)
+Collecting six>=1.9.0
+  Using cached six-1.16.0-py2.py3-none-any.whl (11 kB)
+Collecting pyasn1-modules>=0.2.1
+  Using cached pyasn1_modules-0.2.8-py2.py3-none-any.whl (155 kB)
+Collecting requests-oauthlib>=0.7.0
+  Using cached requests_oauthlib-1.3.1-py2.py3-none-any.whl (23 kB)
+Requirement already satisfied: importlib-metadata>=4.4 in /opt/conda/envs/diffusers2/lib/python3.9/site-packages (from markdown>=2.6.8->tensorboard->-r requirements.txt (line 5)) (5.0.0)
+Requirement already satisfied: pyparsing!=3.0.5,>=2.0.2 in /opt/conda/envs/diffusers2/lib/python3.9/site-packages (from packaging>=20.0->accelerate==0.12.0->-r requirements.txt (line 1)) (3.0.9)
+Requirement already satisfied: urllib3<1.27,>=1.21.1 in /opt/conda/envs/diffusers2/lib/python3.9/site-packages (from requests->torchvision->-r requirements.txt (line 2)) (1.26.12)
+Requirement already satisfied: idna<4,>=2.5 in /opt/conda/envs/diffusers2/lib/python3.9/site-packages (from requests->torchvision->-r requirements.txt (line 2)) (3.4)
+Requirement already satisfied: charset-normalizer<3,>=2 in /opt/conda/envs/diffusers2/lib/python3.9/site-packages (from requests->torchvision->-r requirements.txt (line 2)) (2.1.1)
+Requirement already satisfied: certifi>=2017.4.17 in /opt/conda/envs/diffusers2/lib/python3.9/site-packages (from requests->torchvision->-r requirements.txt (line 2)) (2022.9.24)
+Collecting MarkupSafe>=2.1.1
+  Using cached MarkupSafe-2.1.1-cp39-cp39-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (25 kB)
+Requirement already satisfied: zipp>=0.5 in /opt/conda/envs/diffusers2/lib/python3.9/site-packages (from importlib-metadata>=4.4->markdown>=2.6.8->tensorboard->-r requirements.txt (line 5)) (3.10.0)
+Collecting pyasn1<0.5.0,>=0.4.6
+  Using cached pyasn1-0.4.8-py2.py3-none-any.whl (77 kB)
+Collecting oauthlib>=3.0.0
+  Using cached oauthlib-3.2.2-py3-none-any.whl (151 kB)
+Installing collected packages: wcwidth, tokenizers, tensorboard-plugin-wit, pyasn1, tensorboard-data-server, six, rsa, pyasn1-modules, psutil, protobuf, oauthlib, nvidia-cuda-runtime-cu11, nvidia-cuda-nvrtc-cu11, nvidia-cublas-cu11, MarkupSafe, ftfy, cachetools, absl-py, werkzeug, requests-oauthlib, nvidia-cudnn-cu11, markdown, Jinja2, grpcio, google-auth, transformers, torch, modelcards, google-auth-oauthlib, torchvision, tensorboard, accelerate
+Successfully installed Jinja2-3.1.2 MarkupSafe-2.1.1 absl-py-1.3.0 accelerate-0.12.0 cachetools-5.2.0 ftfy-6.1.1 google-auth-2.13.0 google-auth-oauthlib-0.4.6 grpcio-1.50.0 markdown-3.4.1 modelcards-0.1.6 nvidia-cublas-cu11-11.10.3.66 nvidia-cuda-nvrtc-cu11-11.7.99 nvidia-cuda-runtime-cu11-11.7.99 nvidia-cudnn-cu11-8.5.0.96 oauthlib-3.2.2 protobuf-3.19.6 psutil-5.9.3 pyasn1-0.4.8 pyasn1-modules-0.2.8 requests-oauthlib-1.3.1 rsa-4.9 six-1.16.0 tensorboard-2.10.1 tensorboard-data-server-0.6.1 tensorboard-plugin-wit-1.8.1 tokenizers-0.13.1 torch-1.13.0 torchvision-0.14.0 transformers-4.23.1 wcwidth-0.2.5 werkzeug-2.2.2
