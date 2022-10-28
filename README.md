@@ -1,4 +1,4 @@
-HUGE THANKS TO [SHIVAM SHRIRAO](https://github.com/ShivamShrirao) FOR IMPLEMENTING DREAMBOOTH WITH STABLE DIFFUSION. WE'VE JUST MADE IT EASY TO RUN ON OUR HARDWARE.
+Huge thanks to [Shivam Shrirao](https://github.com/ShivamShrirao) for providing us his implementation of DreamBooth. 
 
 To get started, hit this [link](https://console.brev.dev/environment/new?setupRepo=https://github.com/brevdev/dreambooth&repo=https://github.com/brevdev/dreambooth&setupPath=.brev/setup.sh&instance=g5.2xlarge)
 
