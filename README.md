@@ -22,5 +22,10 @@ sh launch.sh
 ```
 It'll prompt you to add your huggingface token (make sure you've accepted the Hugging Face (Lisence agreement)[https://huggingface.co/CompVis/stable-diffusion-v1-4]) and then the model should download and fine-tune on your input images 🎉🎉.  (It should take around 7 minutes to train and generate samples!)
 
+To then do your own inference run:
+```
+conda activate diffusers
+python inference.py "fine-tuned-model-output/800" "a photo of sks dog wearing sunglasses"
+```
 
 To explore more options have a look at [Shivam's example](https://github.com/ShivamShrirao/diffusers/tree/main/examples/dreambooth)
