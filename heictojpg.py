@@ -15,7 +15,7 @@ else:
 
 for file in listdir(directory):
     print(file)
-    if file.endswith('.HEIC'):
+    if (file.endswith('.HEIC') or file.endswith('.heic')):
     # read the file
         heif_file = pyheif.read(directory + file)
         # convert to jpg

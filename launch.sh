@@ -1,16 +1,20 @@
-export MODEL_NAME="CompVis/stable-diffusion-v1-4"
-export INSTANCE_DIR="./data/dog"
-export OUTPUT_DIR="fine-tuned-model-output"
+export DATA_DIRECTORY="./data/dog"
+export INSTANCE_PROMPT="photo of sks dog"
+
 eval "$(conda shell.bash hook)"
 
 conda activate diffusers
+
+# Comment this out if you've already done it once:
 huggingface-cli login
-python heictojpg.py $INSTANCE_DIR
+
+python heictojpg.py $DATA_DIRECTORY
+
 accelerate launch train_dreambooth.py \
-  --pretrained_model_name_or_path=$MODEL_NAME  \
-  --instance_data_dir=$INSTANCE_DIR \
-  --output_dir=$OUTPUT_DIR \
-  --instance_prompt="photo of sks dog" \
+  --pretrained_model_name_or_path="CompVis/stable-diffusion-v1-4"  \
+  --instance_data_dir=$DATA_DIRECTORY \
+  --output_dir="fine-tuned-model-output" \
+  --instance_prompt=$INSTANCE_PROMPT \
   --resolution=512 \
   --train_batch_size=1 \
   --gradient_accumulation_steps=1 \
