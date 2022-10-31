@@ -26,7 +26,7 @@ Setup your HuggingFace token:
 ```
 huggingface-cli login
 ```
-It'll prompt you to add your huggingface token make sure you've accepted the Hugging Face (license agreement)[https://huggingface.co/CompVis/stable-diffusion-v1-4].
+It'll prompt you to add your huggingface token (make sure you've accepted the Hugging Face [license agreement](https://huggingface.co/CompVis/stable-diffusion-v1-4)).
 
 Then run the training job (this should take about 5 minutes):
 ```
