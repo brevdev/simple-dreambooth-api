@@ -28,11 +28,11 @@ huggingface-cli login
 ```
 It'll prompt you to add your huggingface token (make sure you've accepted the Hugging Face [license agreement](https://huggingface.co/CompVis/stable-diffusion-v1-4)).
 
-Then run the training job (this should take about 5 minutes):
+Then run the training job :
 ```
 sh launch.sh
 ```
-
+(this should take about 5 minutes)
 ## 4) Generate samples:
 To then do your own inference run:
 ```
