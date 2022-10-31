@@ -27,7 +27,7 @@ g_cuda.manual_seed(seed)
 negative_prompt = "" #@param {type:"string"}
 num_samples = 4 #@param {type:"number"}
 guidance_scale = 7.5 #@param {type:"number"}
-num_inference_steps = 50 #@param {type:"number"}
+num_inference_steps = 60 #@param {type:"number"}
 height = 512 #@param {type:"number"}
 width = 512 #@param {type:"number"}
 

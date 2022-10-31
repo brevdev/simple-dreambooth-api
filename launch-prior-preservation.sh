@@ -8,7 +8,8 @@ conda activate diffusers
 # python heictojpg.py "nader"
 
 accelerate launch train_dreambooth.py \
-  --pretrained_model_name_or_path="runwayml/stable-diffusion-v1-5"  \
+  --pretrained_model_name_or_path="stable-diffusion-v1-5"  \
+  --pretrained_vae_name_or_path="stable-diffusion-v1-5/vae" \
   --instance_data_dir="nader" \
   --class_data_dir="class_dir" \
   --output_dir="class-based-output" \
@@ -17,8 +18,9 @@ accelerate launch train_dreambooth.py \
   --class_prompt="photo of a man" \
   --resolution=512 \
   --train_batch_size=1 \
-  --gradient_accumulation_steps=1 \
+  --gradient_accumulation_steps=2 --gradient_checkpointing \
   --learning_rate=5e-6 \
+  --use_8bit_adam \
   --lr_scheduler="constant" \
   --lr_warmup_steps=0 \
   --num_class_images=200 \
