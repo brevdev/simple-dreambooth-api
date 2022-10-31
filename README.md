@@ -21,7 +21,7 @@ brev open dreambooth --wait
 2) Inside ```launch.sh``` change instance_data_dir to point to your training data (line 12)
 3) Then change the prompts you use on lines 13 and 22 of launch.sh e.g. "a photo of Jeremy" & "a photo of Jeremy wearing sunglasses"
 
-## 3) Run the training:
+## 3) Run the training job:
 Setup your HuggingFace token:
 ```
 huggingface-cli login
