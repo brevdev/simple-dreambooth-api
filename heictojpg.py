@@ -17,7 +17,7 @@ for file in listdir(directory):
     print(file)
     if (file.endswith('.HEIC') or file.endswith('.heic')):
     # read the file
-        heif_file = pyheif.read(directory + file)
+        heif_file = pyheif.read(directory + '/' + file)
         # convert to jpg
         image = Image.frombytes(
             heif_file.mode,
@@ -28,6 +28,6 @@ for file in listdir(directory):
             heif_file.stride,
         )
         # save the file
-        image.save(directory + file + '.jpg', 'jpeg', quality=100)
+        image.save(directory + '/' + file + '.jpg', 'jpeg', quality=100)
         # remove the original file
-        os.remove(directory + file)
+        os.remove(directory + '/' + file)
