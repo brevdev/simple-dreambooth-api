@@ -5,11 +5,12 @@ To get started, hit this [link](https://console.brev.dev/environment/new?setupRe
 ## 1) Install and open Brev:
 Mac:
 ```
-brew install brevdev/homebrew-brev/brev
+brew install brevdev/homebrew-brev/brev && brev login
 ```
 Linux:
 ```
 bash -c "$(curl -fsSL https://raw.githubusercontent.com/brevdev/brev-cli/main/bin/install-latest.sh)"
+brev login
 ```
 Then open your new DreamBooth environment in VSCode:
 ```
