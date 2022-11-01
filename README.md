@@ -1,6 +1,6 @@
-Much of the code in this implementation was borrowed from [Shivam Shrirao](https://github.com/ShivamShrirao). Huge thanks to him!
+Much of the code in this implementation was borrowed from [Shivam Shrirao](https://github.com/ShivamShrirao). Huge thanks to him! 
 
-To get started, hit this [link](https://console.brev.dev/environment/new?setupRepo=https://github.com/brevdev/dreambooth&repo=https://github.com/brevdev/dreambooth&setupPath=.brev/setup.sh&instance=g5.2xlarge) to create a Brev environment. We've pre-configured the defaults you'll need to run DreamBooth (inlcuding the cheapest GPU that'll run the model).
+We've pre-configured a Brev environment that'll run Dreambooth out of the box! To get started, hit this [link](https://console.brev.dev/environment/new?setupRepo=https://github.com/brevdev/dreambooth&repo=https://github.com/brevdev/dreambooth&setupPath=.brev/setup.sh&instance=g5.2xlarge) to create a Brev environment. 
 
 ## 1) Open your Dreambooth environment:
 Open your new DreamBooth environment in VSCode:
