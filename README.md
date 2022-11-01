@@ -2,20 +2,12 @@ Much of the code in this implementation was borrowed from [Shivam Shrirao](https
 
 To get started, hit this [link](https://console.brev.dev/environment/new?setupRepo=https://github.com/brevdev/dreambooth&repo=https://github.com/brevdev/dreambooth&setupPath=.brev/setup.sh&instance=g5.2xlarge) to create a Brev environment. We've pre-configured the defaults you'll need to run DreamBooth (inlcuding the cheapest GPU that'll run the model).
 
-## 1) Install and open Brev:
-Mac:
-```
-brew install brevdev/homebrew-brev/brev && brev login
-```
-Linux:
-```
-bash -c "$(curl -fsSL https://raw.githubusercontent.com/brevdev/brev-cli/main/bin/install-latest.sh)"
-brev login
-```
-Then open your new DreamBooth environment in VSCode:
+## 1) Open your Dreambooth environment:
+Open your new DreamBooth environment in VSCode:
 ```
 brev open dreambooth --wait
 ```
+If you don't have the Brev CLI installed, you can install it [here](https://brev.dev/docs/how-to/install-cli).
 ## 2) Upload training data:
 1) Upload about 20 or so photos of someone you want to generate SD samples to the directory (you can drag and drop to vscode)
 2) Inside ```launch.sh``` change instance_data_dir to point to your training data (line 12)
