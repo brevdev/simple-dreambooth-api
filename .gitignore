@@ -1,2 +1,4 @@
 test-training
 fine-tuned-model-output
+redis-stable
+__pycache__
