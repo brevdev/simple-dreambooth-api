@@ -21,3 +21,11 @@ def divide(x, y):
     import time
     time.sleep(5)
     return x / y
+
+@celery.task
+def train():
+    import time
+    import os
+    print("LHUILLIER STARTING TASK")
+    time.sleep(5)
+    os.system("sh launch-copy.sh")
