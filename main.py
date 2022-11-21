@@ -1,3 +1,4 @@
+import base64
 from celery import Celery
 from fastapi import FastAPI
 from uuid import uuid4
@@ -26,13 +27,13 @@ CHUNK_SIZE = 1024 * 1024  # adjust the chunk size as desired
 @app.post("/upload")
 async def upload(file: UploadFile = File(...)):
     # convert file to bytes
-    fileBytes = await file.read()
+    
     # print("file is:")
     # print(file)
-    task = train.delay(fileBytes)
+    # task = train.delay(data)
     # create a uuid for the user request
     # uuid = uuid4()
-    # # check if directory "userzipfiles" exists, if not create it
+    # # # check if directory "userzipfiles" exists, if not create it
     # if not os.path.exists("./userzipfiles"):
     #     os.makedirs("./userzipfiles")
     # try:
@@ -47,28 +48,35 @@ async def upload(file: UploadFile = File(...)):
     #         detail='There was an error uploading the file')
     # finally:
     #     await file.close()
-    # print("filepath:")
-    # print(filepath)
-    # outputFolder = 'unzippedfiles/' + str(uuid)
+    # # print("filepath:")
+    # # print(filepath)
+    # dataDirectory = 'unzippedfiles/' + str(uuid)
     # if not os.path.exists("./unzippedfiles"):
     #     os.makedirs("./unzippedfiles")
     # import zipfile
     # with zipfile.ZipFile(filepath, 'r') as zip_ref:
-    #     zip_ref.extractall(outputFolder)
-    # # delete the zip file
-    # # os.remove(filepath)
-
-    # task = train.delay("test2-output", file)
-
+    #     zip_ref.extractall(dataDirectory)
+    # # # delete the zip file
+    # # # os.remove(filepath)
+    # print("BEFORE TASK")
+    # task = divide.delay(1,2)
+    images = await file.read()
+    byte = base64.b64encode(images)
+    data = {
+            'image': byte.decode('utf-8'),
+        }
+    task = train.delay(data)
     return {"message": f"Successfuly uploaded "}
 
 
 
-@celery.task(serializer='pickle')
-async def train(file):
+@celery.task#(serializer='pickle')
+def train(data):
+    print("IN TRAIN")
+    print(data)
     import os
-    print("running this")
-    print(file)
+    outputFolder = "test-output-folder"
+    dataDirectory = "unzippedfiles/f9b98410-8e37-469e-99f5-6dc6eb0b7105"
     # uuid = uuid4()
     # # check if directory "userzipfiles" exists, if not create it
     # if not os.path.exists("./userzipfiles"):
@@ -92,7 +100,7 @@ async def train(file):
 #     print("LHUILLIER STARTING TASK")
 #     os.system(f"accelerate launch train_dreambooth.py \
 #   --pretrained_model_name_or_path='CompVis/stable-diffusion-v1-4'  \
-#   --instance_data_dir='./data/dog' \
+#   --instance_data_dir={dataDirectory} \
 #   --output_dir={outputFolder} \
 #   --instance_prompt='photo of sks dog' \
 #   --resolution=512 \
@@ -120,8 +128,8 @@ async def saveZipFile(file):
     finally:
         await file.close()
     return filepath
-# @celery.task
-# def divide(x, y):
-#     import time
-#     time.sleep(5)
-#     return x / y
+@celery.task
+def divide(x, y):
+    import time
+    time.sleep(5)
+    return x / y
