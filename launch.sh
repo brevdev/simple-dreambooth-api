@@ -3,9 +3,9 @@ eval "$(conda shell.bash hook)"
 conda activate diffusers
 
 # Comment this out if you've already done it once:
-huggingface-cli login
+# huggingface-cli login
 
-python heictojpg.py "./data/dog"
+# python heictojpg.py "./data/dog"
 
 accelerate launch train_dreambooth.py \
   --pretrained_model_name_or_path="CompVis/stable-diffusion-v1-4"  \
@@ -20,4 +20,4 @@ accelerate launch train_dreambooth.py \
   --lr_warmup_steps=0 \
   --max_train_steps=800
 
-python inference.py "fine-tuned-model-output/800" "a photo of sks dog wearing sunglasses"
+# python inference.py "fine-tuned-model-output/800" "a photo of sks dog wearing sunglasses"

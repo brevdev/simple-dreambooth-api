@@ -2,3 +2,8 @@ test-training
 fine-tuned-model-output
 redis-stable
 __pycache__
+fine-tuned-model-output 
+fine-tuned-model-output2
+output-folder-test 
+userzipfiles
+dump.rdb

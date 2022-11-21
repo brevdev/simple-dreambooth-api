@@ -9,6 +9,8 @@ pip install -U -r requirements.txt
 pip install pyheif
 pip install piexif
 pip install bitsandbytes
+pip install aiofiles
+pip install python-multipart
 # pip install celery==4.4.1 Flask==2.1.0 redis==3.4.1
 wget http://download.redis.io/redis-stable.tar.gz
 tar xvzf redis-stable.tar.gz
