@@ -23,7 +23,7 @@ huggingface-cli login
 uvicorn main:app --reload
 ```
 
-Then head over to [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs) to run the api.
+Then head over to [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs) to run the api. The finetune route takes in a zip file of images used as data to fine tune Stable Diffusion.
 
 In the Brev console, you can forward ports. If you go ahead and forward port 8000 - you'll get a public URL and have created your own Dreambooth API!
 
