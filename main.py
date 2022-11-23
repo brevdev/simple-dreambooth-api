@@ -8,6 +8,8 @@ import aiofiles
 import os 
 import zipfile
 import shutil
+from celery.result import AsyncResult
+from fastapi.responses import FileResponse
 
 
 app = FastAPI()
@@ -18,11 +20,6 @@ celery = Celery(
     broker="redis://127.0.0.1:6379/0",
     backend="redis://127.0.0.1:6379/0"
 )
-
-
-@app.get("/")
-async def root():
-    return {"message": "Hello World"}
 
 CHUNK_SIZE = 1024 * 1024  # adjust the chunk size as desired
 
@@ -38,6 +35,43 @@ if not os.path.exists(extractedFilesDirectory):
 outputModelsDirectory = './outputmodels/'
 if not os.path.exists(outputModelsDirectory):
     os.makedirs(outputModelsDirectory)
+
+
+@app.get("/")
+async def root():
+    return {"message": "Hello World"}
+
+@app.post("/jobstatus")
+async def jobStatus(jobid: str):
+    result = AsyncResult(jobid, app=celery)
+    return result.status
+
+
+@app.post("/runinferencejob")
+async def inference(prompt: str, modelId: str):
+    modelPath = outputModelsDirectory + modelId + "/" + "800"
+    # if not os.path.exists(modelPath):
+    #     return {"message": "Your training job is still either in the queue or is running. Please try again later."}
+    print("modelPath: ", modelPath)
+    task = inference.delay(prompt, modelId, modelPath)
+    return {"message": "Your inference job has been run"}
+    # os.system('python3 inference.py ' + prompt + ' ' + modelPath)
+
+@celery.task#(serializer='pickle')
+def inference(prompt, modelId, modelPath):
+    imgSavePath = f'./{modelId}.png'
+    command = f'python3 inference.py {modelPath} "{prompt}" {imgSavePath}'
+    print("command: ", command)
+    os.system(command)
+
+@app.post("/inferenceoutput")
+async def inferenceoutput(modelId: str):
+    outputImgPath = f'./{modelId}.png'
+    if not os.path.exists(outputImgPath):
+        return {"message": "Your training job is still either in the queue or is running. Please try again later."}
+
+    return FileResponse(outputImgPath)
+
 
 @app.post("/upload")
 async def upload(file: UploadFile = File(...)):
@@ -87,7 +121,7 @@ async def upload(file: UploadFile = File(...)):
     print("Final output directory: " + finalOutputDirectory)
     
     task = train.delay(finalOutputDirectory, outputDirectory)
-    return {"message": f"Successfuly uploaded "}
+    return {"message": f"Job successfully submitted. Task ID: {task.id} and fine-tuned model uuid: {uuid}"}
 
 
 
