@@ -1,7 +1,9 @@
+This is an api runs Dreambooth on a single node and queues jobs as they come in - though it can easily be ported to multi-node due to the Celery implementation.
 
-If you want to run it on your own machine, the .brev/setup.sh script will install everything you need (in the diffusers conda environment).
-To create the same brev environment that runs this API click [here](https://console.brev.dev/environment/new?repo=https://github.com/brevdev/simple-dreambooth-api&instance=g5.2xlarge&diskStorage=100)
-In three separate terminal windows run:
+## Setup:
+- To create the same deployable Brev environment that runs this API click [here](https://console.brev.dev/environment/new?repo=https://github.com/brevdev/simple-dreambooth-api&instance=g5.2xlarge&diskStorage=100)
+- If you want to run it on your own machine, the .brev/setup.sh script will install everything you need (in the diffusers conda environment).
+
 
 ## Start the Redis Server:
 ```
