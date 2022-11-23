@@ -37,11 +37,12 @@ if not os.path.exists(outputModelsDirectory):
     os.makedirs(outputModelsDirectory)
 
 @app.post("/finetune")
-async def upload(file: UploadFile = File(...)):
+async def upload(zipFile: UploadFile = File(...)):
     uuid = uuid4()
-    finalOutputDirectory = await saveZipFile(uuid, file)
+    finalOutputDirectory = await saveZipFile(uuid, zipFile)
     outputDirectory = outputModelsDirectory + str(uuid)
     task = train.delay(finalOutputDirectory, outputDirectory)
+    # return {"abc": "def"}
     return {"message": f"Job successfully submitted. This should take about 5 minutes to run depending on the queue.", "Task ID": task.id, "Model ID": uuid}
 
 @app.get("/finetunejobstatus")
@@ -96,13 +97,14 @@ async def saveZipFile(uuid, file):
             detail='There was an error uploading the file')
     finally:
         await file.close()
-    print("saved file in ", zipFilepath)
+    # delete file
+
     dataDirectory = extractedFilesDirectory + str(uuid)
     if not os.path.exists(dataDirectory):
         os.makedirs(dataDirectory)
     with zipfile.ZipFile(zipFilepath, 'r') as zip_ref:
         zip_ref.extractall(dataDirectory)
-    print("extracted file to ", dataDirectory)
+    os.remove(zipFilepath)
 
     # move each .jpg file to the root of the data directory
     finalOutputDirectory = './finaldatadirectory/' + str(uuid)
@@ -115,5 +117,5 @@ async def saveZipFile(uuid, file):
                 filePath = os.path.join(root, file)
                 shutil.move(filePath, finalOutputDirectory)
                 # move filePath to finalOutputDirectory
-    print("final output directory: ", finalOutputDirectory)
+    shutil.rmtree(dataDirectory)
     return finalOutputDirectory
