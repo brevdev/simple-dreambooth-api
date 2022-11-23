@@ -37,11 +37,11 @@ if not os.path.exists(outputModelsDirectory):
     os.makedirs(outputModelsDirectory)
 
 
-@app.get("/")
-async def root():
-    return {"message": "Hello World"}
+# @app.get("/")
+# async def root():
+#     return {"message": "Hello World"}
 
-@app.post("/jobstatus")
+@app.get("/jobstatus")
 async def jobStatus(jobid: str):
     result = AsyncResult(jobid, app=celery)
     return result.status
@@ -73,11 +73,7 @@ async def inferenceoutput(modelId: str):
     return FileResponse(outputImgPath)
 
 
-@app.post("/upload")
-async def upload(file: UploadFile = File(...)):
-    
-    uuid = uuid4()
-    
+async def saveZipFile(uuid, file):
     try:
         zipFilepath = temporaryZipFileDirectory + str(uuid) + '.zip' # todo: could add a path.join thing here
         print(zipFilepath)
@@ -89,15 +85,15 @@ async def upload(file: UploadFile = File(...)):
             detail='There was an error uploading the file')
     finally:
         await file.close()
-    
-    # extract the zip file then delete it
+    print("saved file in ", zipFilepath)
     dataDirectory = extractedFilesDirectory + str(uuid)
     if not os.path.exists(dataDirectory):
         os.makedirs(dataDirectory)
     with zipfile.ZipFile(zipFilepath, 'r') as zip_ref:
         zip_ref.extractall(dataDirectory)
-    # find all .jpg files in the dataDirectory
+    print("extracted file to ", dataDirectory)
 
+    # move each .jpg file to the root of the data directory
     finalOutputDirectory = './finaldatadirectory/' + str(uuid)
     if not os.path.exists(finalOutputDirectory):
         os.makedirs(finalOutputDirectory)
@@ -108,37 +104,30 @@ async def upload(file: UploadFile = File(...)):
                 filePath = os.path.join(root, file)
                 shutil.move(filePath, finalOutputDirectory)
                 # move filePath to finalOutputDirectory
-            
+    print("final output directory: ", finalOutputDirectory)
+    return finalOutputDirectory
 
-    os.remove(zipFilepath)
-
+@app.post("/upload")
+async def upload(file: UploadFile = File(...)):
+    # so what we want to do is just process the zip file into an output directory
+    uuid = uuid4()
+    finalOutputDirectory = await saveZipFile(uuid, file)
 
     outputDirectory = outputModelsDirectory + str(uuid)
-    if not os.path.exists(outputDirectory):
+    if not os.path.exists(outputDirectory): # TODO: maybe we don't need this as it's created by the training script
         os.makedirs(outputDirectory)
-    # then now we can run the actual worker job
+    # # then now we can run the actual worker job
 
-    print("Final output directory: " + finalOutputDirectory)
+    # print("Final output directory: " + finalOutputDirectory)
     
     task = train.delay(finalOutputDirectory, outputDirectory)
+    # return {"message": "Your training job has been run"}
     return {"message": f"Job successfully submitted. Task ID: {task.id} and fine-tuned model uuid: {uuid}"}
 
 
 
-@celery.task#(serializer='pickle')
-def train(dataDirectory, outputDirectory):
-    print("running command: \n", f"accelerate launch train_dreambooth.py \
-  --pretrained_model_name_or_path='CompVis/stable-diffusion-v1-4'  \
-  --instance_data_dir={dataDirectory} \
-  --output_dir={outputDirectory} \
-  --instance_prompt='photo of sks dog' \
-  --resolution=512 \
-  --train_batch_size=1 \
-  --gradient_accumulation_steps=1 \
-  --learning_rate=5e-6 \
-  --lr_scheduler='constant' \
-  --lr_warmup_steps=0 \
-  --max_train_steps=800")
+@celery.task
+def train(dataDirectory, outputDirectory): # todo: maybe improve the params too
     os.system(f"accelerate launch train_dreambooth.py \
   --pretrained_model_name_or_path='CompVis/stable-diffusion-v1-4'  \
   --instance_data_dir={dataDirectory} \
@@ -151,26 +140,3 @@ def train(dataDirectory, outputDirectory):
   --lr_scheduler='constant' \
   --lr_warmup_steps=0 \
   --max_train_steps=800")
-
-async def saveZipFile(file):
-    uuid = uuid4()
-    # check if directory "userzipfiles" exists, if not create it
-    if not os.path.exists("./userzipfiles"):
-        os.makedirs("./userzipfiles")
-
-    filepath = './userzipfiles/' + str(uuid) + '.zip'
-    try:
-        async with aiofiles.open(filepath, 'wb') as f:
-            while chunk := await file.read(CHUNK_SIZE):
-                await f.write(chunk)
-    except Exception:
-        raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, 
-            detail='There was an error uploading the file')
-    finally:
-        await file.close()
-    return filepath
-@celery.task
-def divide(x, y):
-    import time
-    time.sleep(5)
-    return x / y

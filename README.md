@@ -1,9 +1,24 @@
 Much of the code in this implementation was borrowed from [Shivam Shrirao](https://github.com/ShivamShrirao). Huge thanks to him!
 
-redis-server
-celery -A main.celery worker --loglevel=info --concurrency=1
+In three separate terminal windows run:
+
+```
+conda activate diffusers
 huggingface-cli login
+redis-server
+```
+
+```
+conda activate diffusers
+celery -A main.celery worker --loglevel=info --concurrency=1
+```
+
+```
+conda activate diffusers
 uvicorn main:app --reload
+```
+
+Then head over to [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs) to run the api.
 
 We've pre-configured a Brev environment that'll run Dreambooth out of the box! To get started, hit this [link](https://console.brev.dev/environment/new?setupRepo=https://github.com/brevdev/dreambooth&repo=https://github.com/brevdev/dreambooth&setupPath=.brev/setup.sh&instance=g5.2xlarge) to create a Brev environment.
 
