@@ -1,6 +1,6 @@
 Much of the code in this implementation was borrowed from [Shivam Shrirao](https://github.com/ShivamShrirao). Huge thanks to him!
 
-To create the same brev environment that runs this API click [here](https://console.brev.dev/environment/new?repo=https://github.com/brevdev/dreambooth&instance=g5.2xlarge&diskStorage=100)
+To create the same brev environment that runs this API click [here](https://console.brev.dev/environment/new?repo=https://github.com/brevdev/simple-dreambooth-api&instance=g5.2xlarge&diskStorage=100)
 In three separate terminal windows run:
 
 ```
