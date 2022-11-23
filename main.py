@@ -36,42 +36,53 @@ outputModelsDirectory = './outputmodels/'
 if not os.path.exists(outputModelsDirectory):
     os.makedirs(outputModelsDirectory)
 
+@app.post("/finetune")
+async def upload(file: UploadFile = File(...)):
+    uuid = uuid4()
+    finalOutputDirectory = await saveZipFile(uuid, file)
+    outputDirectory = outputModelsDirectory + str(uuid)
+    task = train.delay(finalOutputDirectory, outputDirectory)
+    return {"message": f"Job successfully submitted. This should take about 5 minutes to run depending on the queue.", "Task ID": task.id, "Model ID": uuid}
 
-# @app.get("/")
-# async def root():
-#     return {"message": "Hello World"}
-
-@app.get("/jobstatus")
+@app.get("/finetunejobstatus")
 async def jobStatus(jobid: str):
     result = AsyncResult(jobid, app=celery)
     return result.status
 
-
-@app.post("/runinferencejob")
+@app.post("/inference")
 async def inference(prompt: str, modelId: str):
     modelPath = outputModelsDirectory + modelId + "/" + "800"
-    # if not os.path.exists(modelPath):
-    #     return {"message": "Your training job is still either in the queue or is running. Please try again later."}
-    print("modelPath: ", modelPath)
-    task = inference.delay(prompt, modelId, modelPath)
-    return {"message": "Your inference job has been run"}
+    inference.delay(prompt, modelId, modelPath)
+    return {"message": "Your inference job has been run. You can get the result by querying the /inferenceoutput endpoint with the task ID.", "Model Id": modelId}
     # os.system('python3 inference.py ' + prompt + ' ' + modelPath)
 
-@celery.task#(serializer='pickle')
-def inference(prompt, modelId, modelPath):
-    imgSavePath = f'./{modelId}.png'
-    command = f'python3 inference.py {modelPath} "{prompt}" {imgSavePath}'
-    print("command: ", command)
-    os.system(command)
-
-@app.post("/inferenceoutput")
+@app.get("/inferenceoutput")
 async def inferenceoutput(modelId: str):
     outputImgPath = f'./{modelId}.png'
     if not os.path.exists(outputImgPath):
         return {"message": "Your training job is still either in the queue or is running. Please try again later."}
-
     return FileResponse(outputImgPath)
 
+@celery.task
+def train(dataDirectory, outputDirectory): # todo: maybe improve the params too
+    os.system(f"accelerate launch train_dreambooth.py \
+  --pretrained_model_name_or_path='CompVis/stable-diffusion-v1-4'  \
+  --instance_data_dir={dataDirectory} \
+  --output_dir={outputDirectory} \
+  --instance_prompt='photo of sks dog' \
+  --resolution=512 \
+  --train_batch_size=1 \
+  --gradient_accumulation_steps=1 \
+  --learning_rate=5e-6 \
+  --lr_scheduler='constant' \
+  --lr_warmup_steps=0 \
+  --max_train_steps=800")
+
+
+@celery.task#(serializer='pickle')
+def inference(prompt, modelId, modelPath):
+    imgSavePath = f'./{modelId}.png'
+    os.system(f'python3 inference.py {modelPath} "{prompt}" {imgSavePath}')
 
 async def saveZipFile(uuid, file):
     try:
@@ -106,37 +117,3 @@ async def saveZipFile(uuid, file):
                 # move filePath to finalOutputDirectory
     print("final output directory: ", finalOutputDirectory)
     return finalOutputDirectory
-
-@app.post("/upload")
-async def upload(file: UploadFile = File(...)):
-    # so what we want to do is just process the zip file into an output directory
-    uuid = uuid4()
-    finalOutputDirectory = await saveZipFile(uuid, file)
-
-    outputDirectory = outputModelsDirectory + str(uuid)
-    if not os.path.exists(outputDirectory): # TODO: maybe we don't need this as it's created by the training script
-        os.makedirs(outputDirectory)
-    # # then now we can run the actual worker job
-
-    # print("Final output directory: " + finalOutputDirectory)
-    
-    task = train.delay(finalOutputDirectory, outputDirectory)
-    # return {"message": "Your training job has been run"}
-    return {"message": f"Job successfully submitted. Task ID: {task.id} and fine-tuned model uuid: {uuid}"}
-
-
-
-@celery.task
-def train(dataDirectory, outputDirectory): # todo: maybe improve the params too
-    os.system(f"accelerate launch train_dreambooth.py \
-  --pretrained_model_name_or_path='CompVis/stable-diffusion-v1-4'  \
-  --instance_data_dir={dataDirectory} \
-  --output_dir={outputDirectory} \
-  --instance_prompt='photo of sks dog' \
-  --resolution=512 \
-  --train_batch_size=1 \
-  --gradient_accumulation_steps=1 \
-  --learning_rate=5e-6 \
-  --lr_scheduler='constant' \
-  --lr_warmup_steps=0 \
-  --max_train_steps=800")
