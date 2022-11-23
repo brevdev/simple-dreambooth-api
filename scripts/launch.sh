@@ -9,8 +9,8 @@ conda activate diffusers
 
 accelerate launch train_dreambooth.py \
   --pretrained_model_name_or_path="CompVis/stable-diffusion-v1-4"  \
-  --instance_data_dir="./data/dog" \
-  --output_dir="fine-tuned-model-output2" \
+  --instance_data_dir="./finaldatadirectory/15346d1d-22aa-4aaa-a3d2-69519fae432f" \
+  --output_dir="./outputmodels/5fa729b5-89c9-4f90-bb93-5c86dd082ad9" \
   --instance_prompt="photo of sks dog" \
   --resolution=512 \
   --train_batch_size=1 \

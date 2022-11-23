@@ -42,7 +42,6 @@ async def upload(zipFile: UploadFile = File(...)):
     finalOutputDirectory = await saveZipFile(uuid, zipFile)
     outputDirectory = outputModelsDirectory + str(uuid)
     task = train.delay(finalOutputDirectory, outputDirectory)
-    # return {"abc": "def"}
     return {"message": f"Job successfully submitted. This should take about 5 minutes to run depending on the queue.", "Task ID": task.id, "Model ID": uuid}
 
 @app.get("/finetunejobstatus")
@@ -55,7 +54,6 @@ async def inference(prompt: str, modelId: str):
     modelPath = outputModelsDirectory + modelId + "/" + "800"
     inference.delay(prompt, modelId, modelPath)
     return {"message": "Your inference job has been run. You can get the result by querying the /inferenceoutput endpoint with the task ID.", "Model Id": modelId}
-    # os.system('python3 inference.py ' + prompt + ' ' + modelPath)
 
 @app.get("/inferenceoutput")
 async def inferenceoutput(modelId: str):
@@ -80,7 +78,7 @@ def train(dataDirectory, outputDirectory): # todo: maybe improve the params too
   --max_train_steps=800")
 
 
-@celery.task#(serializer='pickle')
+@celery.task
 def inference(prompt, modelId, modelPath):
     imgSavePath = f'./{modelId}.png'
     os.system(f'python3 inference.py {modelPath} "{prompt}" {imgSavePath}')
@@ -97,7 +95,6 @@ async def saveZipFile(uuid, file):
             detail='There was an error uploading the file')
     finally:
         await file.close()
-    # delete file
 
     dataDirectory = extractedFilesDirectory + str(uuid)
     if not os.path.exists(dataDirectory):
@@ -106,16 +103,13 @@ async def saveZipFile(uuid, file):
         zip_ref.extractall(dataDirectory)
     os.remove(zipFilepath)
 
-    # move each .jpg file to the root of the data directory
     finalOutputDirectory = './finaldatadirectory/' + str(uuid)
     if not os.path.exists(finalOutputDirectory):
         os.makedirs(finalOutputDirectory)
-    jpgFiles = []
     for root, dirs, files in os.walk(dataDirectory):
         for file in files:
             if file.endswith(".jpg"):
                 filePath = os.path.join(root, file)
                 shutil.move(filePath, finalOutputDirectory)
-                # move filePath to finalOutputDirectory
     shutil.rmtree(dataDirectory)
     return finalOutputDirectory
