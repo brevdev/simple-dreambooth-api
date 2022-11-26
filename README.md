@@ -1,4 +1,4 @@
-This is an api runs Dreambooth on a single node and queues jobs as they come in - though it can easily be ported to multi-node due to the Celery implementation.
+This is an api runs Dreambooth on a single node and queues jobs as they come in.
 
 ## Setup:
 - To create the same deployable Brev environment that runs this API click [here](https://console.brev.dev/environment/new?repo=https://github.com/brevdev/simple-dreambooth-api&instance=g5.2xlarge&diskStorage=100)
